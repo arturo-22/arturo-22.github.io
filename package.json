@@ -8,9 +8,9 @@
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
+    "build": "vite build --base=/users-management-app/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "build": "vite build"
+    "deploy": "gh-pages -d dist --dotfiles"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
