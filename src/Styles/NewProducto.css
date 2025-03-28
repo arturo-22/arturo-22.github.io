@@ -1,0 +1,51 @@
+.containerNew{
+    margin: 50px;
+}
+.containerNew h1{
+    text-align: center;
+}
+.formNew {
+    max-width: 400px;
+    margin: auto;
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formNew div {
+    margin-bottom: 15px;
+  }
+  
+  .formNew label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .formNew input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  .formNew input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+  }
+  
+  .formNew button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+  }

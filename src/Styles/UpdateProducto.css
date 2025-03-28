@@ -1,0 +1,51 @@
+.containerUpdate{
+    margin: 50px;
+}
+.containerUpdate h1{
+    text-align: center;
+}
+.formUpdate {
+    max-width: 400px;
+    margin: auto;
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formUpdate div {
+    margin-bottom: 15px;
+  }
+  
+  .formUpdate label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .formUpdate input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  .formUpdate input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+  }
+  
+  .formUpdate button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
