@@ -4,17 +4,17 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/arturo-22.github.io/', // ¡Asegúrate que coincida EXACTAMENTE con tu repo!
+  base: '/', // Base para la rama `master`
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
-    manifest: true, // Genera un manifest.json
+    manifest: true,
     rollupOptions: {
       output: {
         assetFileNames: 'assets/[name]-[hash][extname]',
-        entryFileNames: 'assets/[name]-[hash].js'
-      }
-    }
-  }
+        entryFileNames: 'assets/[name]-[hash].js',
+      },
+    },
+  },
 });
