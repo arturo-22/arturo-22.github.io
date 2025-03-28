@@ -7,5 +7,5 @@ Algunos puntos de explicar de la prueba que realice.
 
 - Agregue una paginacion para que cuando haya mas de 5 datos se vaya a la siguiente hoja.
 - La busqueda funciona con los campos nombre, apellido y apodo.
-- La pagina es responsive para moviles o tablet
+- La pagina es responsive para tv, moviles o tablet
 - Los datos se guardan en el localStorage del navegador. use el hook useLocalStorage de react
