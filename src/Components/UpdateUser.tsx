@@ -71,8 +71,8 @@ const UpdateUser = () => {
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-5">Actualizar Usuario</h1>
-      <div className="d-flex justify-content-center">
-        <div className="w-50">
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6">
           <form onSubmit={(e) => {e.preventDefault(); save(); }}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -209,7 +209,7 @@ const UpdateUser = () => {
                 className="btn btn-secondary flex-grow-1"
                 onClick={() => navigate("/")}
               >
-                Volver
+                Cancelar
               </button>
             </div>
           </form>

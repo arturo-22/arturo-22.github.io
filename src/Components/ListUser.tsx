@@ -90,7 +90,7 @@ const ListUser = () => {
       ) : (
         <>
           <div className="table-responsive">
-            <table className="table table-striped table-bordered table-hover text-center">
+            <table className="table table-striped table-bordered table-hover text-center align-middle">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -124,36 +124,37 @@ const ListUser = () => {
                     <td>{user.phone}</td>
                     <td>
                       {user.favoritePokemonName ? (
-                        <>
-                          {user.favoritePokemonName} -
+                        <div className="d-flex flex-column align-items-center">
+                          <span>{user.favoritePokemonName}</span>
                           <img
                             src={user.favoritePokemonImg || ""}
                             alt={user.favoritePokemonName}
-                            style={{
-                              marginLeft: "10px",
-                              width: "60px",
-                              height: "60px",
-                              verticalAlign: "center",
-                            }}
+                            className="mt-2"
+                            style={{ width: "60px", height: "60px" }}
                           />
-                        </>
+                        </div>
                       ) : (
                         "-"
                       )}
                     </td>
+
                     <td>
-                      <button
-                        className="btn btn-sm btn-warning me-2 mb-2 mb-sm-0"
-                        onClick={() => navigate(`/updateUser/${user.id}`)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => deleteUser(user.id)}
-                      >
-                        Eliminar
-                      </button>
+                      <td>
+                        <div className="d-flex flex-column flex-sm-row gap-2">
+                          <button
+                            className="btn btn-sm btn-warning w-100"
+                            onClick={() => navigate(`/updateUser/${user.id}`)}
+                          >
+                            Editar
+                          </button>
+                          <button
+                            className="btn btn-sm btn-danger w-100"
+                            onClick={() => deleteUser(user.id)}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
                     </td>
                   </tr>
                 ))}
