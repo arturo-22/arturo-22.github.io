@@ -1,13 +1,17 @@
 import React from "react";
 
-// Definir los tipos de las propiedades (props)
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  
   const handlePageClick = (page: number) => {
     onPageChange(page);
   };
@@ -16,7 +20,11 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     <nav className="d-flex justify-content-end">
       <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" href="#" onClick={() => handlePageClick(currentPage - 1)}>
+          <a
+            className="page-link"
+            href="#"
+            onClick={() => handlePageClick(currentPage - 1)}
+          >
             Anterior
           </a>
         </li>
@@ -38,7 +46,11 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         ))}
 
         <li className="page-item">
-          <a className="page-link" href="#" onClick={() => handlePageClick(currentPage + 1)}>
+          <a
+            className="page-link"
+            href="#"
+            onClick={() => handlePageClick(currentPage + 1)}
+          >
             Siguiente
           </a>
         </li>

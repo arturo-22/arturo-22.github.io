@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { List } from "./Components/List";
-import NewProducto from "./Components/NewProducto";
-import UpdateProducto from "./Components/UpdateProducto";
-
+import ListUser from "./Components/ListUser";
+import NewUser from "./Components/NewUser";
+import UpdateUser from "./Components/UpdateUser";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<List/>}/>
-        <Route path="/newProducto" element={<NewProducto/>}/>
-        <Route path="/updateProducto/:id" element={<UpdateProducto/>}/>
+        <Route path="/" element={<ListUser />} />
+        <Route path="/newUser" element={<NewUser />} />
+        <Route path="/updateUser/:id" element={<UpdateUser />} />
       </Routes>
     </BrowserRouter>
   );
