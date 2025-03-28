@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import { useLocalStorage } from "usehooks-ts";
+import PokemonSelect from "./PokemonSelect";
 
 const NewUser = () => {
   const [users, setUsers] = useLocalStorage<IUser[]>("users-app", []);
@@ -18,24 +19,24 @@ const NewUser = () => {
   };
 
   const save = () => {
-    // Validación de campos obligatorios
-    if (!user.name || !user.email) {
-      Swal.fire({
-        title: "Error!",
-        text: "Nombre y email son campos obligatorios",
-        icon: "error",
-      });
-      return;
-    }
+    //Validación de campos obligatorios
+    const requiredFields = [
+      { key: "name", message: "Nombre es un campo obligatorio" },
+      { key: "lastName", message: "Apellido es un campo obligatorio" },
+      { key: "email", message: "Correo Electrónico es un campo obligatorio" },
+      { key: "password", message: "Contraseña es un campo obligatorio" },
+      { key: "dateBirth", message: "Fecha de Nacimiento es un campo obligatorio" },
+    ];
 
-    // Validación de formato de email
-    if (!/^\S+@\S+\.\S+$/.test(user.email)) {
-      Swal.fire({
-        title: "Error!",
-        text: "Por favor ingrese un email válido",
-        icon: "error",
-      });
-      return;
+    for (const field of requiredFields) {
+      if (!user[field.key as keyof IUser]) {
+        Swal.fire({
+          title: "Error!",
+          text: field.message,
+          icon: "error",
+        });
+        return;
+      }
     }
 
     // Generar nuevo ID
@@ -55,16 +56,12 @@ const NewUser = () => {
     navigate("/");
   };
 
-  const returnHomePage = () => {
-    navigate("/");
-  };
-
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-5">Crear Nuevo Usuario</h1>
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <form>
+          <form onSubmit={(e) => {e.preventDefault(); save(); }}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Nombre:
@@ -168,32 +165,28 @@ const NewUser = () => {
               />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="favoritePokemon" className="form-label">
-                Pokémon Favorito:
-              </label>
-              <input
-                type="text"
-                id="favoritePokemon"
-                name="favoritePokemon"
-                className="form-control"
-                value={user.favoritePokemon || ""}
-                onChange={handleInputChange}
-              />
-            </div>
+            <PokemonSelect
+              onSelectPokemon={(pokemon) =>
+                setUser({
+                  ...user,
+                  idPokemon: pokemon?.id || 0,
+                  favoritePokemonName: pokemon?.name || "",
+                  favoritePokemonImg: pokemon?.img || "",
+                })
+              }
+            />
 
             <div className="d-flex gap-2 mt-4 mb-4">
               <button
-                type="button"
+                type="submit"
                 className="btn btn-primary flex-grow-1"
-                onClick={save}
               >
                 Guardar
               </button>
               <button
                 type="button"
                 className="btn btn-secondary flex-grow-1"
-                onClick={returnHomePage}
+                onClick={() => navigate("/")}
               >
                 Cancelar
               </button>

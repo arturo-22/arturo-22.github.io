@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import { useLocalStorage } from "usehooks-ts";
+import PokemonSelect from "./PokemonSelect";
 
 const UpdateUser = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,17 +20,27 @@ const UpdateUser = () => {
   };
 
   const save = () => {
-    // Validación
-    if (!user.name || !user.email) {
-      Swal.fire({
-        title: "Error!",
-        text: "Nombre y email son campos obligatorios",
-        icon: "error",
-      });
-      return;
+    // Validación campos obligatorios
+    const requiredFields = [
+      { key: "name", message: "Nombre es un campo obligatorio" },
+      { key: "lastName", message: "Apellido es un campo obligatorio" },
+      { key: "email", message: "Correo Electrónico es un campo obligatorio" },
+      { key: "password", message: "Contraseña es un campo obligatorio" },
+      { key: "dateBirth", message: "Fecha de Nacimiento es un campo obligatorio" },
+    ];
+
+    for (const field of requiredFields) {
+      if (!user[field.key as keyof IUser]) {
+        Swal.fire({
+          title: "Error!",
+          text: field.message,
+          icon: "error",
+        });
+        return;
+      }
     }
 
-    const updatedUsers = users.map((u) => (u.id === user.id ? user : u));
+    const updatedUsers = users.map((e) => (e.id === user.id ? user : e));
 
     setUsers(updatedUsers);
 
@@ -42,13 +53,9 @@ const UpdateUser = () => {
     navigate("/");
   };
 
-  const returnHomePage = () => {
-    navigate("/");
-  };
-
   useEffect(() => {
     if (id) {
-      const existingUser = users.find((u) => u.id === Number(id));
+      const existingUser = users.find((e) => e.id === Number(id));
       if (existingUser) {
         setUser(existingUser);
       } else {
@@ -66,7 +73,7 @@ const UpdateUser = () => {
       <h1 className="text-center mb-5">Actualizar Usuario</h1>
       <div className="d-flex justify-content-center">
         <div className="w-50">
-          <form className="formUpdate">
+          <form onSubmit={(e) => {e.preventDefault(); save(); }}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Nombre:
@@ -169,33 +176,38 @@ const UpdateUser = () => {
                 onChange={handleInputChange}
               />
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="favoritePokemon" className="form-label">
-                Pokémon Favorito:
-              </label>
-              <input
-                type="text"
-                id="favoritePokemon"
-                name="favoritePokemon"
-                className="form-control"
-                value={user.favoritePokemon || ""}
-                onChange={handleInputChange}
-              />
-            </div>
+            
+            <PokemonSelect
+              onSelectPokemon={(pokemon) => {
+                setUser({
+                  ...user,
+                  idPokemon: pokemon?.id || 0,
+                  favoritePokemonName: pokemon?.name || "",
+                  favoritePokemonImg: pokemon?.img || "",
+                });
+              }}
+              initialPokemon={
+                user.favoritePokemonName && user.favoritePokemonImg
+                  ? {
+                      id: user.idPokemon ?? 0,
+                      name: user.favoritePokemonName,
+                      img: user.favoritePokemonImg,
+                    }
+                  : undefined
+              }
+            />
 
             <div className="d-flex gap-2 mt-4 mb-4">
               <button
-                type="button"
+                type="submit"
                 className="btn btn-primary flex-grow-1"
-                onClick={save}
               >
                 Guardar
               </button>
               <button
                 type="button"
                 className="btn btn-secondary flex-grow-1"
-                onClick={returnHomePage}
+                onClick={() => navigate("/")}
               >
                 Volver
               </button>

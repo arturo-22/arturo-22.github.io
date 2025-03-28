@@ -1,5 +1,6 @@
 export interface IUser {
   id: number;
+  idPokemon?: number;
   name?: string;
   lastName?: string;
   nickName?: string;
@@ -7,16 +8,13 @@ export interface IUser {
   password?: string;
   dateBirth?: Date | null;
   phone?: string;
-  favoritePokemon?: string;
+  favoritePokemonName?: string;
+  favoritePokemonImg?: string;
 }
-
-export interface IPokemon {
-    name: string;
-    url: string;
-  }
 
 export const initialUser: IUser = {
   id: 0,
+  idPokemon: 0,
   name: "",
   lastName: "",
   nickName: "",
@@ -24,4 +22,6 @@ export const initialUser: IUser = {
   password: "",
   dateBirth: null,
   phone: "",
+  favoritePokemonName: "",
+  favoritePokemonImg: "",
 };

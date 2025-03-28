@@ -41,12 +41,12 @@ const ListUser = () => {
 
   // Buscar usuarios
   const handleSearch = () => {
-    const searchTerm = search.toLowerCase();
+    const searchFormat = search.toLowerCase();
     const filtered = users.filter((item) => {
       return (
-        (item.name && item.name.toLowerCase().includes(searchTerm)) ||
-        (item.lastName && item.lastName.toLowerCase().includes(searchTerm)) ||
-        (item.nickName && item.nickName.toLowerCase().includes(searchTerm))
+        (item.name && item.name.toLowerCase().includes(searchFormat)) ||
+        (item.lastName && item.lastName.toLowerCase().includes(searchFormat)) ||
+        (item.nickName && item.nickName.toLowerCase().includes(searchFormat))
       );
     });
     setFilteredUsers(filtered);
@@ -122,7 +122,25 @@ const ListUser = () => {
                         : "N/A"}
                     </td>
                     <td>{user.phone}</td>
-                    <td>{user.favoritePokemon || "-"}</td>
+                    <td>
+                      {user.favoritePokemonName ? (
+                        <>
+                          {user.favoritePokemonName} -
+                          <img
+                            src={user.favoritePokemonImg || ""}
+                            alt={user.favoritePokemonName}
+                            style={{
+                              marginLeft: "10px",
+                              width: "60px",
+                              height: "60px",
+                              verticalAlign: "center",
+                            }}
+                          />
+                        </>
+                      ) : (
+                        "-"
+                      )}
+                    </td>
                     <td>
                       <button
                         className="btn btn-sm btn-warning me-2 mb-2 mb-sm-0"
