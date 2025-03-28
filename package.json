@@ -6,11 +6,11 @@
   "homepage": "https://arturo-22.github.io/users-management-app",
   "scripts": {
     "dev": "vite",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build": "vite build --base=/users-management-app/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --dotfiles"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",

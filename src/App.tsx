@@ -5,7 +5,7 @@ import UpdateUser from "./Components/UpdateUser";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/users-management-app">  {/* ¡Cambio importante aquí! */}
       <Routes>
         <Route path="/" element={<ListUser />} />
         <Route path="/newUser" element={<NewUser />} />

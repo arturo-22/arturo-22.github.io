@@ -1,13 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/users-management-app/', // ¡VERIFICA QUE ESTE EXACTO!
-  server: {
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
-  }
+  base: "https://arturo-22.github.io/users-management-app",
 });
